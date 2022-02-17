@@ -8,7 +8,7 @@ export const SearchPanel = ({param, setParam, users}) => {
         <input type="text" value={param.name} onChange={evt => setParam({...param, name: evt.target.value})}/>
         <select onChange={evt => setParam({...param, personId: evt.target.value})}>
           {
-            users.map((user:any) => <option value={user.id} key={user.id}>{user.name}</option>)
+            users.map((user: any) => <option value={user.id} key={user.id}>{user.name}</option>)
           }
         </select>
       </div>
