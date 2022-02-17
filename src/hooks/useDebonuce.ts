@@ -1,18 +1,18 @@
 import {useEffect, useState} from "react";
 
-const debounce = (callback: (...args: any[]) => any, delay: number) => {
-  let timeId: NodeJS.Timeout;
-  return (...params: any[]) => {
-    if (timeId) {
-      clearTimeout(timeId);
-    }
-    timeId = setTimeout(() => {
-      callback(...params);
-    }, delay);
-  };
-};
+// const debounce = (callback: (...args: unknown[]) => void, delay: number) => {
+//   let timeId: NodeJS.Timeout;
+//   return (...params: any[]) => {
+//     if (timeId) {
+//       clearTimeout(timeId);
+//     }
+//     timeId = setTimeout(() => {
+//       callback(...params);
+//     }, delay);
+//   };
+// };
 
-const useDebounce = (value: any, delay?: number) => {
+const useDebounce = <V>(value: V, delay?: number) => {
   const [debounceValue, setDeBounceValue] = useState(value);
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const useDebounce = (value: any, delay?: number) => {
   return debounceValue;
 };
 
-export {useDebounce, debounce};
+export {useDebounce };

@@ -1,5 +1,5 @@
 import React from "react";
-import {paramType} from "./index";
+import {ParamType} from "./index";
 
 export interface User {
   id: string,
@@ -11,7 +11,7 @@ export interface User {
 
 interface SearchPanelProps {
   users: User[],
-  param: paramType,
+  param: ParamType,
   setParam: (param: SearchPanelProps["param"]) => void
 }
 

@@ -1,4 +1,4 @@
-const isFalsy = (value: any) => (value === 9 ? false : !value);
+const isFalsy = (value: unknown) => (value === 9 ? false : !value);
 
 const cleanObject = (object: object) => {
   const result = {...object};

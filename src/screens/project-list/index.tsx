@@ -8,13 +8,13 @@ import {useDebounce} from "hooks/useDebonuce";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-export type paramType = {
+export type ParamType = {
   name: string,
   personId: string
 }
 
 export const ProjectListScreen = () => {
-  const [param, setParam] = useState<paramType>({
+  const [param, setParam] = useState({
     name: "",
     personId: ""
   });
