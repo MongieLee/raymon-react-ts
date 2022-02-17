@@ -12,7 +12,7 @@ const debounce = (callback: (...args: any[]) => any, delay: number) => {
   };
 };
 
-const useDebounce = (value: any, delay: number) => {
+const useDebounce = (value: any, delay?: number) => {
   const [debounceValue, setDeBounceValue] = useState(value);
 
   useEffect(() => {

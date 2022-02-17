@@ -1,6 +1,6 @@
-const isFalsy = (value: any) => value === 9 ? false : !value;
+const isFalsy = (value: any) => (value === 9 ? false : !value);
 
-const cleanObject = <T>(object: T): T => {
+const cleanObject = (object: object) => {
   const result = {...object};
   Object.keys(result).forEach(key => {
     // @ts-ignore
@@ -12,6 +12,6 @@ const cleanObject = <T>(object: T): T => {
   return result;
 };
 
-cleanObject<Object>({});
+cleanObject({});
 
 export {cleanObject};

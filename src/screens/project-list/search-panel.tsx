@@ -1,7 +1,21 @@
 import React from "react";
+import {paramType} from "./index";
 
-// @ts-ignore
-export const SearchPanel = ({param, setParam, users}) => {
+export interface User {
+  id: string,
+  name: string,
+  email: string,
+  title: string,
+  organization: string
+}
+
+interface SearchPanelProps {
+  users: User[],
+  param: paramType,
+  setParam: (param: SearchPanelProps["param"]) => void
+}
+
+export const SearchPanel = ({param, setParam, users}: SearchPanelProps) => {
   return (
     <form>
       <div>

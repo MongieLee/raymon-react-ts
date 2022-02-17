@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-const useMount = (callback: Function) => {
+const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
