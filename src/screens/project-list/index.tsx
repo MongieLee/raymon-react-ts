@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {SearchPanel} from "./search-panel";
 import {List} from "./list";
-import {cleanObject} from "uitils";
+import {cleanObject} from "utils";
 import qs from "qs";
 import {useMount} from "hooks/useMount";
 import {useDebounce} from "hooks/useDebonuce";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-export type ParamType = {
+export interface ParamType {
   name: string,
   personId: string
 }
