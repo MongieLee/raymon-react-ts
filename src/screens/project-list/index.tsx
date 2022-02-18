@@ -17,15 +17,15 @@ export const ProjectListScreen = () => {
     name: "",
     personId: ""
   });
-  const debounceValue = useDebounce(param, 300);
+  const debouncedValue = useDebounce(param, 300);
 
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
   const client = useHttp();
 
   useEffect(() => {
-    client("projects", {data: cleanObject(debounceValue)}).then(setList);
-  }, [debounceValue]);
+    client("projects", {data: cleanObject(debouncedValue)}).then(setList);
+  }, [debouncedValue]);
 
   useMount(() => {
     client("users").then(setUsers);

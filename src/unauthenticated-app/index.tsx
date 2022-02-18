@@ -20,16 +20,16 @@ export const UnauthenticatedApp = () => {
         </Title>
         {isRegister ? <RegisterScreen/> : <LoginScreen/>}
         <Divider/>
-        <a onClick={() => setIsRegister(!isRegister)}>
+        <Button type={"link"} onClick={() => setIsRegister(!isRegister)}>
           {isRegister ? "已经有账号了？立即去登录" : "没有账号？注册新账号"}
-        </a>
+        </Button>
       </ShadowCard>
     </Container>
   );
 };
 
 const Title = styled.h2`
-  margin-botom: 2.4rem;
+  margin-bottom: 2.4rem;
   color: rgb(97, 104, 115);
 `;
 
@@ -61,7 +61,7 @@ const ShadowCard = styled(Card)`
   width: 40rem;
   min-height: 56rem;
   padding: 3.2rem;
-  border-sizing: border-box;
+  box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
   text-align: center;
 `;
