@@ -4,7 +4,8 @@ import {List} from "./list";
 import {cleanObject} from "utils";
 import {useMount} from "hooks/useMount";
 import {useDebounce} from "hooks/useDebonuce";
-import {useHttp} from "../../utils/http";
+import {useHttp} from "utils/http";
+import {useDocumentTitle} from "hooks/useDocumentTitle";
 import styled from "@emotion/styled";
 
 export interface ParamType {
@@ -22,6 +23,7 @@ export const ProjectListScreen = () => {
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
   const client = useHttp();
+  useDocumentTitle("项目列表")
 
   useEffect(() => {
     client("projects", {data: cleanObject(debouncedValue)}).then(setList);

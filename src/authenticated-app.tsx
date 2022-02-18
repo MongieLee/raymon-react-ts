@@ -5,9 +5,11 @@ import styled from "@emotion/styled";
 import {Button, Dropdown, Menu} from "antd";
 import {Row} from "./components/lib";
 import {ReactComponent as Logo} from "assets/logo.svg";
+import {useDocumentTitle} from "./hooks/useDocumentTitle";
 
 export const AuthenticatedApp = () => {
   const {logout, user} = useAuth();
+  useDocumentTitle("请登录或注册")
 
   return (
     <Container>
