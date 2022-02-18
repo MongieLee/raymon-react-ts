@@ -5,6 +5,7 @@ import {cleanObject} from "utils";
 import {useMount} from "hooks/useMount";
 import {useDebounce} from "hooks/useDebonuce";
 import {useHttp} from "../../utils/http";
+import styled from "@emotion/styled";
 
 export interface ParamType {
   name: string,
@@ -31,9 +32,14 @@ export const ProjectListScreen = () => {
   });
 
   return (
-    <>
+    <Container>
+      <h1>项目列表</h1>
       <SearchPanel param={param} setParam={setParam} users={users}/>
       <List list={list} users={users}/>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  padding: 3.2rem
+`;
