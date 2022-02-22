@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 const useMount = (callback: () => void) => {
   useEffect(() => {
@@ -7,4 +7,4 @@ const useMount = (callback: () => void) => {
   }, []);
 };
 
-export {useMount};
+export { useMount };

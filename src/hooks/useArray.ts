@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 
 const useArray = <T>(initialArray: T[]) => {
   const [value, setValue] = useState(initialArray);
@@ -11,8 +11,8 @@ const useArray = <T>(initialArray: T[]) => {
       const copy = [...value];
       copy.splice(index, 1);
       setValue(copy);
-    }
+    },
   };
 };
 
-export {useArray};
+export { useArray };

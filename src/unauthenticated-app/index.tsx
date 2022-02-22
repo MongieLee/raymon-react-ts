@@ -1,27 +1,25 @@
-import React, {useState} from "react";
-import {RegisterScreen} from "./register";
-import {LoginScreen} from "./login";
-import {Button, Card, Divider} from "antd";
+import React, { useState } from "react";
+import { RegisterScreen } from "./register";
+import { LoginScreen } from "./login";
+import { Button, Card, Divider } from "antd";
 import styled from "@emotion/styled";
 import logo from "assets/logo.svg";
 import left from "assets/left.svg";
 import right from "assets/right.svg";
-import {useDocumentTitle} from "../hooks/useDocumentTitle";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 export const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false);
-  useDocumentTitle("请登录或注册")
+  useDocumentTitle("请登录或注册");
 
   return (
     <Container>
-      <Header/>
-      <Background/>
+      <Header />
+      <Background />
       <ShadowCard>
-        <Title>
-          {isRegister ? "请注册" : "请登录"}
-        </Title>
-        {isRegister ? <RegisterScreen/> : <LoginScreen/>}
-        <Divider/>
+        <Title>{isRegister ? "请注册" : "请登录"}</Title>
+        {isRegister ? <RegisterScreen /> : <LoginScreen />}
+        <Divider />
         <Button type={"link"} onClick={() => setIsRegister(!isRegister)}>
           {isRegister ? "已经有账号了？立即去登录" : "没有账号？注册新账号"}
         </Button>
@@ -42,9 +40,10 @@ const Background = styled.div`
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: left bottom, right bottom;
-  background-size: calc(((100vw - 40rem) / 2) - 3.2rem), calc(((100vw - 40rem) / 2) - 3.2rem), cover;
+  background-size: calc(((100vw - 40rem) / 2) - 3.2rem),
+    calc(((100vw - 40rem) / 2) - 3.2rem), cover;
   background-image: url(${left}), url(${right});
-  // 40rem是中间表单区域的宽度  
+  // 40rem是中间表单区域的宽度
 `;
 
 const Header = styled.header`

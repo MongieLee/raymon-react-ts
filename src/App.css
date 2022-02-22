@@ -1,14 +1,14 @@
 html {
-    /* rem em */
-    /*em 相对于父元素的font-size*/
-    /*rem 相对于根元素的font-size，r就是root的意思，就是html*/
-    font-size: 62.5%;
-    /*160*0.625 = 10*/
-    /*1rem === 10px*/
-    /*如果设计稿的长度是200px,换算下来就是20rem*/
+  /* rem em */
+  /*em 相对于父元素的font-size*/
+  /*rem 相对于根元素的font-size，r就是root的意思，就是html*/
+  font-size: 62.5%;
+  /*160*0.625 = 10*/
+  /*1rem === 10px*/
+  /*如果设计稿的长度是200px,换算下来就是20rem*/
 }
 
 /*viewport height === vh*/
 html body #root .App {
-    min-height: 100vh;
+  min-height: 100vh;
 }

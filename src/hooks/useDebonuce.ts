@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 // const debounce = (callback: (...args: unknown[]) => void, delay: number) => {
 //   let timeId: NodeJS.Timeout;
@@ -27,4 +27,4 @@ const useDebounce = <V>(value: V, delay?: number) => {
   return debounceValue;
 };
 
-export {useDebounce};
+export { useDebounce };

@@ -1,37 +1,43 @@
 import React from "react";
-import {ProjectListScreen} from "./screens/project-list";
-import {useAuth} from "./context/auth-context";
+import { ProjectListScreen } from "./screens/project-list";
+import { useAuth } from "./context/auth-context";
 import styled from "@emotion/styled";
-import {Button, Dropdown, Menu} from "antd";
-import {Row} from "./components/lib";
-import {ReactComponent as Logo} from "assets/logo.svg";
-import {useDocumentTitle} from "./hooks/useDocumentTitle";
+import { Button, Dropdown, Menu } from "antd";
+import { Row } from "./components/lib";
+import { ReactComponent as Logo } from "assets/logo.svg";
+import { useDocumentTitle } from "./hooks/useDocumentTitle";
 
 export const AuthenticatedApp = () => {
-  const {logout, user} = useAuth();
-  useDocumentTitle("请登录或注册")
+  const { logout, user } = useAuth();
 
   return (
     <Container>
       <Header between={true}>
         <HeaderLeft gap={true}>
-          <Logo height={"4rem"} width={"4rem"}/>
+          <Logo height={"4rem"} width={"4rem"} />
           <Row>Big Project</Row>
           <Row>UserInfo</Row>
         </HeaderLeft>
         <HeaderRight>
-          <Dropdown overlay={
-            <Menu>
-              <Menu.Item key={"logout"}>
-                <Button type={"link"} onClick={logout}>登出</Button>
-              </Menu.Item>
-            </Menu>}>
-            <Button type={"link"} onClick={(e) => e.preventDefault()}>Hi {user?.name}</Button>
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item key={"logout"}>
+                  <Button type={"link"} onClick={logout}>
+                    登出
+                  </Button>
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <Button type={"link"} onClick={(e) => e.preventDefault()}>
+              Hi {user?.name}
+            </Button>
           </Dropdown>
         </HeaderRight>
       </Header>
       <Main>
-        <ProjectListScreen/>
+        <ProjectListScreen />
       </Main>
     </Container>
   );
@@ -43,7 +49,7 @@ const Main = styled.main`
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows:6rem 1fr;
+  grid-template-rows: 6rem 1fr;
   height: 100vh;
 `;
 
