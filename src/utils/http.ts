@@ -1,5 +1,5 @@
 import qs from "qs";
-import { logout } from "./auth-provider";
+import { logout } from "../services/auth-provider";
 import { useAuth } from "../context/auth-context";
 
 const apiUrl = process.env.REACT_APP_API_URL;
