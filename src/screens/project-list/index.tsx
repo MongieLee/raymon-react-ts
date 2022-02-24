@@ -21,16 +21,16 @@ export const ProjectListScreen = () => {
   const debouncedValue = useDebounce(param, 300);
   useDocumentTitle("项目列表", false);
   const { isLoading, error, data: list } = useProjectList(debouncedValue);
-  const { data: users } = useUserList();
+  // const { data: users } = useUserList();
 
   return (
     <Container>
       <h1>项目列表</h1>
-      <SearchPanel param={param} setParam={setParam} users={users || []} />
+      {/* <SearchPanel param={param} setParam={setParam} users={users || []} /> */}
       {error ? (
         <Typography.Text type={"danger"}>{error.message}</Typography.Text>
       ) : null}
-      <List loading={isLoading} dataSource={list || []} users={users || []} />
+      {/* <List loading={isLoading} dataSource={list || []} users={users || []} /> */}
     </Container>
   );
 };

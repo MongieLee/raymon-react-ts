@@ -8,7 +8,7 @@ export const useUserList = () => {
   const client = useHttp();
   const { run, ...result } = useAsync<User[]>();
   useEffect(() => {
-    run(client("users", { data: cleanObject({}) }));
+    // run(client("users", { data: cleanObject({}) }));
   }, []);
 
   return result;

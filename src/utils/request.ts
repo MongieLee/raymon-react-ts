@@ -2,15 +2,18 @@ import axios, { AxiosRequestConfig } from "axios";
 import { apiUrl } from "./commonPath";
 import qs from "qs";
 import { getItem, setItem } from "./token";
+import { Result } from "antd";
+import { localStorageKey } from "services/auth-provider";
 axios.defaults.timeout = 3000;
 axios.defaults.baseURL = apiUrl;
-const token = getItem("access_token");
-if (token) {
-  axios.defaults.headers.common["Authorization"] = `Bearer #{token}`;
+
+enum ResultEnum {
+  SUCCESSFUL = "SUCCESSFUL",
+  FAILURE = "FAILURE",
 }
 
 export interface Result<D> {
-  status: string;
+  status: ResultEnum;
   data: D | null;
   msg: string;
 }
@@ -24,17 +27,31 @@ const request = (url: string, { ...config }: AuthConfig) => {
     ...config,
     url,
   };
-  console.log(options);
-  
-
+  const token = getItem(localStorageKey);
+  if (token) {
+    options.headers = {
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    };
+  }
   return new Promise((reslove, reject) => {
     axios(options)
-      .then(({ status, data }) => {
+      .then(({ status, data }: { status: number; data: Result<any> }) => {
+        // reject(data);
         if (status >= 200 && status < 300) {
-          reslove(data);
+          if (data.status === ResultEnum.SUCCESSFUL) {
+            reslove(data);
+          } else {
+            // 第一种错误，服务逻辑处理完毕返回的业务异常
+            reject(new Error(data.msg));
+          }
         }
       })
-      .catch((error) => {
+      // 第二种错误，status code非2xx时，必须在这里catch并执行reject将Promise的状态改为失败
+      // 否则调用request的消费者无法catch到异常
+      .catch((error: Error) => {
+        console.log("should be running");
+        console.dir(error);
         reject(error);
       });
   });

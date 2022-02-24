@@ -7,11 +7,17 @@ import logo from "assets/logo.svg";
 import left from "assets/left.svg";
 import right from "assets/right.svg";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import axios from "axios";
 
 export const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   useDocumentTitle("请登录或注册");
+
+  const togglePage = ()=>{
+    setIsRegister(!isRegister)
+    setError(null)
+  }
 
   return (
     <Container>
@@ -23,12 +29,12 @@ export const UnauthenticatedApp = () => {
           <Typography.Text type={"danger"}>{error.message}</Typography.Text>
         ) : null}
         {isRegister ? (
-          <RegisterScreen onError={setError} />
+          <RegisterScreen onError={setError} setIsRegister={setIsRegister}/>
         ) : (
           <LoginScreen onError={setError} />
         )}
         <Divider />
-        <Button type={"link"} onClick={() => setIsRegister(!isRegister)}>
+        <Button type={"link"} onClick={togglePage}>
           {isRegister ? "已经有账号了？立即去登录" : "没有账号？注册新账号"}
         </Button>
       </ShadowCard>

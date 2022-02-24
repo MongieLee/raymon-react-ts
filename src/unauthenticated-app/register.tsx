@@ -5,8 +5,10 @@ import { useAsync } from "hooks/useAsync";
 
 export const RegisterScreen = ({
   onError,
+  setIsRegister,
 }: {
   onError: (error: Error) => void;
+  setIsRegister: (isRegister: boolean) => void;
 }) => {
   const { register } = useAuth();
   const { run, isLoading } = useAsync();
@@ -22,7 +24,9 @@ export const RegisterScreen = ({
       onError(new Error("两次密码不一致"));
       return;
     }
-    run(register(values)).catch(onError);
+    run(register(values))
+      .then(() => setIsRegister(false))
+      .catch(onError);
   };
 
   return (

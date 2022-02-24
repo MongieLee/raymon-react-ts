@@ -18,7 +18,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
     ...initialState,
   });
 
-  const setDate = (data: D) =>
+  const setData = (data: D) =>
     setState({
       data,
       error: null,
@@ -36,13 +36,16 @@ export const useAsync = <D>(initialState?: State<D>) => {
     if (!promise) {
       throw new Error("请检查传入的参数是否为Promise");
     }
+    console.log("usele");
     setState({ ...state, stat: "loading" });
     return promise
       .then((data) => {
-        setDate(data);
+        console.log("这里是不是执行了");
+        setData(data);
         return data;
       })
       .catch((error) => {
+        console.log("这里执行？ ");
         setError(error);
         return Promise.reject(error);
       });
@@ -54,7 +57,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
     isError: state.stat === "error",
     isSuccess: state.stat === "success",
     run,
-    setDate,
+    setData,
     setError,
     ...state,
   };

@@ -7,9 +7,17 @@ import { Row } from "./components/lib";
 import { ReactComponent as Logo } from "assets/logo.svg";
 import { useDocumentTitle } from "./hooks/useDocumentTitle";
 
+function usefuck(){
+  return {
+    logout:()=>{},
+    user:{name:"fuck"}
+  }
+}
 export const AuthenticatedApp = () => {
-  const { logout, user } = useAuth();
+  console.log("caonima");
 
+  const { logout, user } = usefuck();
+  
   return (
     <Container>
       <Header between={true}>

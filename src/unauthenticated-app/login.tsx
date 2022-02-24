@@ -8,6 +8,8 @@ export const LoginScreen = ({
 }: {
   onError: (error: Error) => void;
 }) => {
+  console.log("是我执行了");
+
   const { login } = useAuth();
   const { run, isLoading } = useAsync();
   const handlerSubmit = (values: { username: string; password: string }) => {
