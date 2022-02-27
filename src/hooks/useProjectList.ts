@@ -1,20 +1,19 @@
 import { useEffect } from "react";
 import { Project } from "screens/project-list/list";
-import { cleanObject } from "utils";
-import { useHttp } from "utils/http";
 import { useAsync } from "./useAsync";
 import { request } from "utils/request";
 
-export const useProjectList = (params?: Partial<Project>) => {
-  const client = useHttp();
+export const useProjectList = (params?: { name?: string; uid?: number }) => {
   const { run, ...result } = useAsync<Project[]>();
   useEffect(() => {
-    run(request("/v1/user/users", { method: "GET" }).then(
-      (data: any) => {
-        return data;
-      }
-    ));
-    // run(request("projects", { data: cleanObject(params || {}) }));
+    run(
+      request("/v1/projects", {
+        method: "GET",
+        params: { page: 1, pageSize: 10, ...params },
+      }).then((data: any) => {
+        return data.data.records;
+      })
+    );
   }, [params]);
 
   return result;

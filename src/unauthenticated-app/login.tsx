@@ -1,4 +1,4 @@
-import { useAuth } from "context/auth-context";
+import { bootstrapUser, useAuth } from "context/auth-context";
 import { Button, Form, Input } from "antd";
 import { LongButton } from "./index";
 import { useAsync } from "hooks/useAsync";
@@ -8,12 +8,15 @@ export const LoginScreen = ({
 }: {
   onError: (error: Error) => void;
 }) => {
-  console.log("是我执行了");
 
-  const { login } = useAuth();
+  const { login, setUser } = useAuth();
   const { run, isLoading } = useAsync();
   const handlerSubmit = (values: { username: string; password: string }) => {
-    run(login(values)).catch(onError);
+    run(login(values))
+      .then(async () => {
+        setUser(await bootstrapUser());
+      })
+      .catch(onError);
   };
 
   return (

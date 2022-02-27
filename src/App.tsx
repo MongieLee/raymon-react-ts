@@ -5,8 +5,6 @@ import { UnauthenticatedApp } from "./unauthenticated-app";
 import { AuthenticatedApp } from "./authenticated-app";
 
 function App() {
-  console.log("我进来了对不对");
-
   const { user } = useAuth();
   
   return (

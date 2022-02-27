@@ -36,16 +36,16 @@ export const useAsync = <D>(initialState?: State<D>) => {
     if (!promise) {
       throw new Error("请检查传入的参数是否为Promise");
     }
-    console.log("usele");
     setState({ ...state, stat: "loading" });
     return promise
       .then((data) => {
-        console.log("这里是不是执行了");
         setData(data);
         return data;
       })
-      .catch((error) => {
-        console.log("这里执行？ ");
+      .catch((error: Error) => {
+        if (error.message) {
+          console.dir(error);
+        }
         setError(error);
         return Promise.reject(error);
       });

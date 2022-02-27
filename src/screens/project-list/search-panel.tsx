@@ -4,17 +4,16 @@ import { Form, Input, Select } from "antd";
 
 export interface User {
   id: string;
-  name: string;
-  email: string;
-  title: string;
-  organization: string;
-  token: string;
+  username: string;
+  avatar: string;
+  createAt: string;
 }
 
 interface SearchPanelProps {
   users: User[];
   param: ParamType;
-  setParam: (param: SearchPanelProps["param"]) => void;
+  // setParam: (param: SearchPanelProps["param"]) => void;
+  setParam: any;
 }
 
 export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {
@@ -29,13 +28,14 @@ export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {
       </Form.Item>
       <Form.Item>
         <Select
-          value={param.personId}
-          onChange={(value) => setParam({ ...param, personId: value })}
+          style={{ width: `300px` }}
+          value={param.userId}
+          onChange={(value) => setParam({ ...param, userId: value })}
         >
-          <Select.Option value={""}>请选择</Select.Option>
+          <Select.Option value={null}>可选择负责人</Select.Option>
           {users.map((user: any) => (
             <Select.Option value={user.id} key={user.id}>
-              {user.name}
+              {user.username}
             </Select.Option>
           ))}
         </Select>
