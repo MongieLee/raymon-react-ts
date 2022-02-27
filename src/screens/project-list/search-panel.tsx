@@ -12,8 +12,8 @@ export interface User {
 interface SearchPanelProps {
   users: User[];
   param: ParamType;
-  // setParam: (param: SearchPanelProps["param"]) => void;
-  setParam: any;
+  setParam: (params: ParamType) => void;
+  // setParam: any;
 }
 
 export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {

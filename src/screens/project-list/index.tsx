@@ -14,7 +14,7 @@ export interface ParamType {
 }
 
 export const ProjectListScreen = () => {
-  const [param, setParam] = useState({
+  const [param, setParam] = useState<ParamType>({
     name: "",
     userId: null,
   });
