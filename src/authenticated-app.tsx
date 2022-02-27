@@ -9,6 +9,7 @@ import { useDocumentTitle } from "./hooks/useDocumentTitle";
 import { Navigate, Route, Routes } from "react-router";
 import { ProjectScreen } from "screens/project";
 import { BrowserRouter as Router } from "react-router-dom";
+import { resteRoute } from "utils";
 
 export const AuthenticatedApp = () => {
   return (
@@ -22,6 +23,7 @@ export const AuthenticatedApp = () => {
               path={"/projects/:projectId/*"}
               element={<ProjectScreen />}
             ></Route>
+            <Route path="*" element={<Navigate to={"/projects"} />} />
           </Routes>
         </Router>
       </Main>
@@ -34,7 +36,10 @@ const PageHeader = () => {
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <Logo height={"4rem"} width={"4rem"} />
+        <Button type={"link"} onClick={() => resteRoute()}>
+          <Logo height={"4rem"} width={"4rem"} />
+        </Button>
+
         <Row>Big Project</Row>
         <Row>UserInfo</Row>
       </HeaderLeft>

@@ -13,4 +13,5 @@ const cleanObject = (object: { [key: string]: unknown }) => {
   return result;
 };
 
-export { cleanObject };
+const resteRoute = () => (window.location.href = window.location.origin);
+export { cleanObject, resteRoute };
