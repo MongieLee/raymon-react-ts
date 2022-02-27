@@ -16,6 +16,8 @@ interface ListProps extends TableProps<Project> {
 }
 
 export const List = ({ users, ...props }: ListProps) => {
+  let err: any;
+  err.fuck();
   return (
     <Table
       pagination={false}
