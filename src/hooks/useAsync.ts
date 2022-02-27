@@ -18,7 +18,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
     ...initialState,
   });
 
-  const setDate = (data: D) =>
+  const setData = (data: D) =>
     setState({
       data,
       error: null,
@@ -39,10 +39,13 @@ export const useAsync = <D>(initialState?: State<D>) => {
     setState({ ...state, stat: "loading" });
     return promise
       .then((data) => {
-        setDate(data);
+        setData(data);
         return data;
       })
-      .catch((error) => {
+      .catch((error: Error) => {
+        if (error.message) {
+          console.dir(error);
+        }
         setError(error);
         return Promise.reject(error);
       });
@@ -54,7 +57,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
     isError: state.stat === "error",
     isSuccess: state.stat === "success",
     run,
-    setDate,
+    setData,
     setError,
     ...state,
   };

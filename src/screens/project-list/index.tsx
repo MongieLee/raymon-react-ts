@@ -9,14 +9,14 @@ import { useUserList } from "hooks/useUserList";
 import { Typography } from "antd";
 
 export interface ParamType {
-  name: string;
-  personId: string;
+  name?: string;
+  userId?: any;
 }
 
 export const ProjectListScreen = () => {
   const [param, setParam] = useState({
     name: "",
-    personId: "",
+    userId: null,
   });
   const debouncedValue = useDebounce(param, 300);
   useDocumentTitle("项目列表", false);

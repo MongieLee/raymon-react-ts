@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import { User } from "screens/project-list/search-panel";
-import { cleanObject } from "utils";
-import { useHttp } from "utils/http";
+import { request } from "utils/request";
 import { useAsync } from "./useAsync";
 
 export const useUserList = () => {
-  const client = useHttp();
   const { run, ...result } = useAsync<User[]>();
   useEffect(() => {
-    run(client("users", { data: cleanObject({}) }));
+    run(
+      request("/v1/user/users", {
+        method: "GET",
+        params: { page: 1, pageSize: 10 },
+      }).then((data: any) => {
+        return data.data.records;
+      })
+    );
   }, []);
 
   return result;

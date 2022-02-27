@@ -7,6 +7,12 @@ import { Row } from "./components/lib";
 import { ReactComponent as Logo } from "assets/logo.svg";
 import { useDocumentTitle } from "./hooks/useDocumentTitle";
 
+function usefuck() {
+  return {
+    logout: () => {},
+    user: { name: "fuck" },
+  };
+}
 export const AuthenticatedApp = () => {
   const { logout, user } = useAuth();
 
@@ -31,7 +37,7 @@ export const AuthenticatedApp = () => {
             }
           >
             <Button type={"link"} onClick={(e) => e.preventDefault()}>
-              Hi {user?.name}
+              Hi {user?.username}
             </Button>
           </Dropdown>
         </HeaderRight>
