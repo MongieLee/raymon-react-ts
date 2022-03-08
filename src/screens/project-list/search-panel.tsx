@@ -2,18 +2,10 @@ import React from "react";
 import { ParamType } from "./index";
 import { Form, Input, Select } from "antd";
 
-export interface User {
-  id: string;
-  username: string;
-  avatar: string;
-  createAt: string;
-}
-
 interface SearchPanelProps {
   users: User[];
   param: ParamType;
   setParam: (params: ParamType) => void;
-  // setParam: any;
 }
 
 export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {

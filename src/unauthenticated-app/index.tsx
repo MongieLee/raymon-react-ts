@@ -7,17 +7,16 @@ import logo from "assets/logo.svg";
 import left from "assets/left.svg";
 import right from "assets/right.svg";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import axios from "axios";
 
 export const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   useDocumentTitle("请登录或注册");
 
-  const togglePage = ()=>{
-    setIsRegister(!isRegister)
-    setError(null)
-  }
+  const togglePage = () => {
+    setIsRegister(!isRegister);
+    setError(null);
+  };
 
   return (
     <Container>
@@ -29,7 +28,7 @@ export const UnauthenticatedApp = () => {
           <Typography.Text type={"danger"}>{error.message}</Typography.Text>
         ) : null}
         {isRegister ? (
-          <RegisterScreen onError={setError} setIsRegister={setIsRegister}/>
+          <RegisterScreen onError={setError} setIsRegister={setIsRegister} />
         ) : (
           <LoginScreen onError={setError} />
         )}
@@ -42,7 +41,7 @@ export const UnauthenticatedApp = () => {
   );
 };
 
-// UnauthenticatedApp.displayName = "fuck";
+UnauthenticatedApp.displayName = "UnauthenticatedApp";
 
 const Title = styled.h2`
   margin-bottom: 2.4rem;

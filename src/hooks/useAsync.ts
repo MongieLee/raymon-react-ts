@@ -12,6 +12,7 @@ const defaultInitalState: State<null> = {
   error: null,
 };
 
+// 传入初始化state后，自带加载状态和错误管理
 export const useAsync = <D>(initialState?: State<D>) => {
   const [state, setState] = useState<State<D>>({
     ...defaultInitalState,
@@ -32,6 +33,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
       stat: "error",
     });
 
+  // 传入异步Promise
   const run = (promise: Promise<D>) => {
     if (!promise) {
       throw new Error("请检查传入的参数是否为Promise");
@@ -43,11 +45,9 @@ export const useAsync = <D>(initialState?: State<D>) => {
         return data;
       })
       .catch((error: Error) => {
-        if (error.message) {
-          console.dir(error);
-        }
         setError(error);
         return Promise.reject(error);
+        // 这里需要返回一个reject，外部才能捕获的到，否则Error在这里就被消化了
       });
   };
 

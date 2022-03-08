@@ -5,7 +5,6 @@ import styled from "@emotion/styled";
 import { Button, Dropdown, Menu } from "antd";
 import { Row } from "./components/lib";
 import { ReactComponent as Logo } from "assets/logo.svg";
-import { useDocumentTitle } from "./hooks/useDocumentTitle";
 import { Navigate, Route, Routes } from "react-router";
 import { ProjectScreen } from "screens/project";
 import { BrowserRouter as Router } from "react-router-dom";

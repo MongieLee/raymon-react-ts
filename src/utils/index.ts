@@ -13,5 +13,6 @@ const cleanObject = (object: { [key: string]: unknown }) => {
   return result;
 };
 
+// 回到根路径
 const resteRoute = () => (window.location.href = window.location.origin);
 export { cleanObject, resteRoute };

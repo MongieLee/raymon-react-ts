@@ -1,5 +1,5 @@
 import { bootstrapUser, useAuth } from "context/auth-context";
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import { LongButton } from "./index";
 import { useAsync } from "hooks/useAsync";
 
@@ -8,10 +8,9 @@ export const LoginScreen = ({
 }: {
   onError: (error: Error) => void;
 }) => {
-
   const { login, setUser } = useAuth();
   const { run, isLoading } = useAsync();
-  const handlerSubmit = (values: { username: string; password: string }) => {
+  const handlerSubmit = (values: AuthFrom) => {
     run(login(values))
       .then(async () => {
         setUser(await bootstrapUser());

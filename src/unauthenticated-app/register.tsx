@@ -15,9 +15,7 @@ export const RegisterScreen = ({
   const handlerSubmit = ({
     cpassword,
     ...values
-  }: {
-    username: string;
-    password: string;
+  }: AuthFrom & {
     cpassword: string;
   }) => {
     if (cpassword !== values.password) {

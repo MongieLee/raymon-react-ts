@@ -1,30 +1,29 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import * as auth from "services/auth-provider";
-import { User } from "screens/project-list/search-panel";
 import { useMount } from "../hooks/useMount";
-import { message } from "antd";
-import { request, Result } from "utils/request";
+import { request } from "utils/request";
 import { useAsync } from "hooks/useAsync";
 import { FullPageLoading } from "components/lib";
 import { localStorageKey } from "services/auth-provider";
-
 interface AuthForm {
   username: string;
   password: string;
 }
 
+// 获取当前用户信息，会判断当前token是否存在
 export const bootstrapUser = async () => {
   let user = null;
   const token = auth.getToken();
+  console.log(token);
+  
   if (token) {
-    // const data = await http("userInfo", { token });
-    // user = data.user;
     const data = await request("/v1/user/info", { method: "GET" });
     user = (data as Result<User>).data;
   }
   return user;
 };
 
+// 创建React上下文
 const AuthContext = React.createContext<
   | {
       user: User | null;
@@ -37,12 +36,13 @@ const AuthContext = React.createContext<
 >(undefined);
 AuthContext.displayName = "AuthContext";
 
+// 更新token
 const handleUserResponse = ({ token }: { token: string }) => {
   token && window.localStorage.setItem(localStorageKey, token);
 };
 
+// Content的Provider容器
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  // const [user, setUser] = useState<User | null>(null);
   const {
     run,
     data: user,
@@ -51,25 +51,34 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     isIdle,
     isError,
     setData: setUser,
-  } = useAsync<User | null>();
+  } = useAsync<User | null>(); // 从hooks中取出状态和方法等
+
+  // 注册方法
   const register = (form: AuthForm) => auth.register(form);
+
+  // 登录方法，并处理全局user状态
   const login = (form: AuthForm) =>
     auth.login(form).then((data: any) => {
       handleUserResponse(data);
     });
+
+  // 登出方法
   const logout = () =>
     auth.logout().then(() => {
       setUser(null);
     });
 
+  // 组件初次渲染时会判断是否有token，如果有则自动更新user状态
   useMount(() => {
     run(bootstrapUser());
   });
 
+  // 如果是空闲或者loading状态时，显示全局的Loading组件
   if (isIdle || isLoading) {
     return <FullPageLoading />;
   }
 
+  // 非空闲及非loading时显示被包裹的子组件
   return (
     <AuthContext.Provider
       children={children}
@@ -78,6 +87,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// 从AuthContext.Provider的value中取出传入的对象并返回
 const useAuth = () => {
   const context = React.useContext(AuthContext);
   if (!context) {
