@@ -25,7 +25,7 @@ export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {
           onChange={(value) => setParam({ ...param, userId: value })}
         >
           <Select.Option value={null}>可选择负责人</Select.Option>
-          {users.map((user: any) => (
+          {users.map((user: User) => (
             <Select.Option value={user.id} key={user.id}>
               {user.username}
             </Select.Option>
