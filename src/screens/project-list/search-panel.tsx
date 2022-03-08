@@ -5,7 +5,7 @@ import { Form, Input, Select } from "antd";
 interface SearchPanelProps {
   users: User[];
   param: ParamType;
-  setParam: (params: ParamType) => void;
+  setParam: (params: { name: string; userId: any }) => void;
 }
 
 export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {

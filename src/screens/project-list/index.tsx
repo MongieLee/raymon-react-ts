@@ -16,12 +16,8 @@ export interface ParamType {
 }
 
 export const ProjectListScreen = () => {
-  const [_, setParam] = useState<ParamType>({
-    name: "",
-    userId: null,
-  });
-  const [param] = useQueryParams(["name", "userId"]);
-
+  const [keys] = useState<("name" | "userId")[]>(["name", "userId"]);
+  const [param, setParam] = useQueryParams(keys);
   const debouncedValue = useDebounce(param, 300);
   useDocumentTitle("项目列表", false);
   const { isLoading, error, data: list } = useProjectList(debouncedValue);
