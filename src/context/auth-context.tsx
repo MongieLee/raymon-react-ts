@@ -5,6 +5,7 @@ import { request } from "utils/request";
 import { useAsync } from "hooks/useAsync";
 import { FullPageLoading } from "components/lib";
 import { localStorageKey } from "services/auth-provider";
+import { log } from "console";
 interface AuthForm {
   username: string;
   password: string;
@@ -14,8 +15,7 @@ interface AuthForm {
 export const bootstrapUser = async () => {
   let user = null;
   const token = auth.getToken();
-  console.log(token);
-  
+
   if (token) {
     const data = await request("/v1/user/info", { method: "GET" });
     user = (data as Result<User>).data;
@@ -37,8 +37,8 @@ const AuthContext = React.createContext<
 AuthContext.displayName = "AuthContext";
 
 // 更新token
-const handleUserResponse = ({ token }: { token: string }) => {
-  token && window.localStorage.setItem(localStorageKey, token);
+const handleUserResponse = (token: string) => {
+  window.localStorage.setItem(localStorageKey, token);
 };
 
 // Content的Provider容器
@@ -58,8 +58,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // 登录方法，并处理全局user状态
   const login = (form: AuthForm) =>
-    auth.login(form).then((data: any) => {
-      handleUserResponse(data);
+    auth.login(form).then(({ data }) => {
+      handleUserResponse(data!.token);
     });
 
   // 登出方法

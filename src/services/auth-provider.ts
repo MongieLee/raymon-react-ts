@@ -8,7 +8,7 @@ const localStorageKey = "__auth__provider_token__";
 const getToken = () => getItem(localStorageKey);
 
 const login = (data: { username: string; password: string }) => {
-  return request("/v1/auth/login", { method: "POST", data });
+  return request<{ token: string }>("/v1/auth/login", { method: "POST", data });
 };
 
 const register = (data: { username: string; password: string }) => {
