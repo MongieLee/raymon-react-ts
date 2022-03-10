@@ -1,11 +1,12 @@
 import React from "react";
-import { ParamType } from "./index";
 import { Form, Input, Select } from "antd";
+import { Project } from "./list";
+import { UserSelect } from "components/use-select";
 
 interface SearchPanelProps {
   users: User[];
-  param: ParamType;
-  setParam: (params: { name: string; userId: any }) => void;
+  param: Partial<Pick<Project, "name" | "userId">>;
+  setParam: (params: SearchPanelProps["param"]) => void;
 }
 
 export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {
@@ -19,18 +20,12 @@ export const SearchPanel = ({ param, setParam, users }: SearchPanelProps) => {
         />
       </Form.Item>
       <Form.Item>
-        <Select
-          style={{ width: `300px` }}
+        <UserSelect
+          defaultOptionName="负责人"
           value={param.userId}
+          style={{ width: `300px` }}
           onChange={(value) => setParam({ ...param, userId: value })}
-        >
-          <Select.Option value={null}>可选择负责人</Select.Option>
-          {users.map((user: User) => (
-            <Select.Option value={user.id} key={user.id}>
-              {user.username}
-            </Select.Option>
-          ))}
-        </Select>
+        ></UserSelect>
       </Form.Item>
     </Form>
   );

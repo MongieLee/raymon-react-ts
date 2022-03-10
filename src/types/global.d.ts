@@ -10,7 +10,7 @@ declare interface Result<D> {
 }
 
 declare interface User {
-  id: string;
+  id: number;
   username: string;
   avatar: string;
   createAt: string;

@@ -15,7 +15,7 @@ interface AuthConfig extends AxiosRequestConfig {
   grant_type?: string;
 }
 
-const request = <T = any>(url: string, { ...config }: AuthConfig) => {
+const request = <T>(url: string, { ...config }: AuthConfig) => {
   let options: AxiosRequestConfig = {
     ...config,
     url,

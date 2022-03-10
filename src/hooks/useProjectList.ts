@@ -4,7 +4,7 @@ import { useAsync } from "./useAsync";
 import { request } from "utils/request";
 import { AxiosResponse } from "axios";
 
-export const useProjectList = (params?: { name?: string; uid?: number }) => {
+export const useProjectList = (params?: Partial<Project>) => {
   const { run, ...result } = useAsync<Project[]>();
   useEffect(() => {
     run(

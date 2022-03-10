@@ -7,20 +7,15 @@ import styled from "@emotion/styled";
 import { useProjectList } from "hooks/useProjectList";
 import { useUserList } from "hooks/useUserList";
 import { Typography } from "antd";
-import { useSearchParams } from "react-router-dom";
-import { useQueryParams } from "utils/url";
-
-export interface ParamType {
-  name: string;
-  userId: any;
-}
-
+import { useProjectsSearchParams } from "./util";
 export const ProjectListScreen = () => {
-  const [keys] = useState<("name" | "userId")[]>(["name", "userId"]);
-  const [param, setParam] = useQueryParams(keys);
-  const debouncedValue = useDebounce(param, 300);
   useDocumentTitle("项目列表", false);
-  const { isLoading, error, data: list } = useProjectList(debouncedValue);
+  const [param, setParam] = useProjectsSearchParams();
+  const {
+    isLoading,
+    error,
+    data: list,
+  } = useProjectList(useDebounce(param, 200));
   const { data: users } = useUserList();
 
   return (

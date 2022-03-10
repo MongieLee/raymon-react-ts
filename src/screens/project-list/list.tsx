@@ -6,7 +6,7 @@ export interface Project {
   id: number;
   name: string;
   created: number;
-  userId: string;
+  userId: number;
   createdAt: string;
 }
 interface ListProps extends TableProps<Project> {
